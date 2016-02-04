@@ -1,0 +1,35 @@
+{
+    "name":              "browserfs/php-stat",
+    "description":       "A library for generating a PHP file summary code",
+    "type":              "library",
+    "license":           "MIT",
+    "homepage":          "https://github.com/browserfs/php-stat",
+    "keywords": [
+        "string",
+        "parsing",
+        "php",
+        "statistics"
+    ],
+    "authors": [
+        {
+            "name":     "sfia andrei",
+            "email":    "sfia.andreidaniel@gmail.com",
+            "homepage": "http://www.browserfs.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4",
+        "browserfs/string": "1.*"
+    },
+    "require-dev": {
+        "ext-phar":                  "*",
+        "ext-pdo":                   "*",
+        "phpunit/phpunit":           "~4.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "browserfs\\php-stat\\": "src/"
+        }
+    },
+    "minimum-stability": "dev"
+}
