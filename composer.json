@@ -19,7 +19,7 @@
     ],
     "require": {
         "php": ">=5.4",
-        "browserfs/string": "1.*"
+        "nikic/php-parser": "*"
     },
     "require-dev": {
         "ext-phar":                  "*",
@@ -28,7 +28,7 @@
     },
     "autoload": {
         "psr-4": {
-            "browserfs\\php-stat\\": "src/"
+            "browserfs\\phpstat\\": "src/"
         }
     },
     "minimum-stability": "dev"

@@ -4,97 +4,59 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "203b3b014b1b52ede925ba9f3a9206e9",
-    "content-hash": "60d6a762ba1185b03477755958f17c1f",
+    "hash": "fdc5d3a6d31a7f59e3d448c3d8782428",
+    "content-hash": "d83b71a6292faa68bfcd9b59dc34b1e5",
     "packages": [
         {
-            "name": "browserfs/base",
-            "version": "v0.0.3",
+            "name": "nikic/php-parser",
+            "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/browserfs/base.git",
-                "reference": "d98550b5cf6f6e9083f99f39d17fd1b79d61db55"
+                "url": "https://github.com/nikic/PHP-Parser.git",
+                "reference": "e05ef2374367ae8d96101cd6f353b2f0362ad80f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/browserfs/base/zipball/d98550b5cf6f6e9083f99f39d17fd1b79d61db55",
-                "reference": "d98550b5cf6f6e9083f99f39d17fd1b79d61db55",
+                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/e05ef2374367ae8d96101cd6f353b2f0362ad80f",
+                "reference": "e05ef2374367ae8d96101cd6f353b2f0362ad80f",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.4"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "browserfs\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "sfia andrei",
-                    "email": "sfia.andreidaniel@gmail.com",
-                    "homepage": "http://www.browserfs.com/"
-                }
-            ],
-            "description": "Basecode for browserfs vendor",
-            "homepage": "https://www.browserfs.com/",
-            "keywords": [
-                "base class"
-            ],
-            "time": "2016-01-26 19:16:36"
-        },
-        {
-            "name": "browserfs/string",
-            "version": "v1.0.6",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/browserfs/string.git",
-                "reference": "d581d24ea179c6dc583090aadb2ab550c05d417c"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/browserfs/string/zipball/d581d24ea179c6dc583090aadb2ab550c05d417c",
-                "reference": "d581d24ea179c6dc583090aadb2ab550c05d417c",
-                "shasum": ""
-            },
-            "require": {
-                "browserfs/base": "0.*",
+                "ext-tokenizer": "*",
                 "php": ">=5.4"
             },
             "require-dev": {
-                "ext-pdo": "*",
-                "ext-phar": "*",
                 "phpunit/phpunit": "~4.0"
             },
+            "bin": [
+                "bin/php-parse"
+            ],
             "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.0-dev"
+                }
+            },
             "autoload": {
                 "psr-4": {
-                    "browserfs\\string\\": "src/"
+                    "PhpParser\\": "lib/PhpParser"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "MIT"
+                "BSD-3-Clause"
             ],
             "authors": [
                 {
-                    "name": "sfia andrei",
-                    "email": "sfia.andreidaniel@gmail.com",
-                    "homepage": "http://www.browserfs.com"
+                    "name": "Nikita Popov"
                 }
             ],
-            "description": "A library for handling strings ( parsing )",
-            "homepage": "https://github.com/browserfs/string",
+            "description": "A PHP parser written in PHP",
             "keywords": [
-                "parsing",
-                "string"
+                "parser",
+                "php"
             ],
-            "time": "2016-01-28 16:51:46"
+            "time": "2016-01-28 16:03:02"
         }
     ],
     "packages-dev": [

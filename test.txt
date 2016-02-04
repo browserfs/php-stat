@@ -1,0 +1,1274 @@
+PHPUnit 5.1.7 by Sebastian Bergmann and contributors.
+
+.                                                                  1 / 1 (100%)Stmt_If
+PhpParser\Node\Stmt\If_ Object
+(
+    [cond] => PhpParser\Node\Expr\BooleanNot Object
+        (
+            [expr] => PhpParser\Node\Expr\FuncCall Object
+                (
+                    [name] => PhpParser\Node\Name Object
+                        (
+                            [parts] => Array
+                                (
+                                    [0] => function_exists
+                                )
+
+                            [attributes:protected] => Array
+                                (
+                                    [startLine] => 16
+                                    [endLine] => 16
+                                )
+
+                        )
+
+                    [args] => Array
+                        (
+                            [0] => PhpParser\Node\Arg Object
+                                (
+                                    [value] => PhpParser\Node\Scalar\String_ Object
+                                        (
+                                            [value] => autoload_init
+                                            [attributes:protected] => Array
+                                                (
+                                                    [startLine] => 16
+                                                    [endLine] => 16
+                                                )
+
+                                        )
+
+                                    [byRef] => 
+                                    [unpack] => 
+                                    [attributes:protected] => Array
+                                        (
+                                            [startLine] => 16
+                                            [endLine] => 16
+                                        )
+
+                                )
+
+                        )
+
+                    [attributes:protected] => Array
+                        (
+                            [startLine] => 16
+                            [endLine] => 16
+                        )
+
+                )
+
+            [attributes:protected] => Array
+                (
+                    [startLine] => 16
+                    [endLine] => 16
+                )
+
+        )
+
+    [stmts] => Array
+        (
+            [0] => PhpParser\Node\Stmt\Function_ Object
+                (
+                    [byRef] => 
+                    [name] => autoload_init
+                    [params] => Array
+                        (
+                            [0] => PhpParser\Node\Param Object
+                                (
+                                    [type] => 
+                                    [byRef] => 
+                                    [variadic] => 
+                                    [name] => class_prefix
+                                    [default] => 
+                                    [attributes:protected] => Array
+                                        (
+                                            [startLine] => 18
+                                            [endLine] => 18
+                                        )
+
+                                )
+
+                            [1] => PhpParser\Node\Param Object
+                                (
+                                    [type] => 
+                                    [byRef] => 
+                                    [variadic] => 
+                                    [name] => base_dir
+                                    [default] => 
+                                    [attributes:protected] => Array
+                                        (
+                                            [startLine] => 18
+                                            [endLine] => 18
+                                        )
+
+                                )
+
+                        )
+
+                    [returnType] => 
+                    [stmts] => Array
+                        (
+                            [0] => PhpParser\Node\Expr\FuncCall Object
+                                (
+                                    [name] => PhpParser\Node\Name Object
+                                        (
+                                            [parts] => Array
+                                                (
+                                                    [0] => spl_autoload_register
+                                                )
+
+                                            [attributes:protected] => Array
+                                                (
+                                                    [startLine] => 20
+                                                    [endLine] => 20
+                                                )
+
+                                        )
+
+                                    [args] => Array
+                                        (
+                                            [0] => PhpParser\Node\Arg Object
+                                                (
+                                                    [value] => PhpParser\Node\Expr\Closure Object
+                                                        (
+                                                            [static] => 
+                                                            [byRef] => 
+                                                            [params] => Array
+                                                                (
+                                                                    [0] => PhpParser\Node\Param Object
+                                                                        (
+                                                                            [type] => 
+                                                                            [byRef] => 
+                                                                            [variadic] => 
+                                                                            [name] => class
+                                                                            [default] => 
+                                                                            [attributes:protected] => Array
+                                                                                (
+                                                                                    [startLine] => 20
+                                                                                    [endLine] => 20
+                                                                                )
+
+                                                                        )
+
+                                                                )
+
+                                                            [uses] => Array
+                                                                (
+                                                                    [0] => PhpParser\Node\Expr\ClosureUse Object
+                                                                        (
+                                                                            [var] => base_dir
+                                                                            [byRef] => 
+                                                                            [attributes:protected] => Array
+                                                                                (
+                                                                                    [startLine] => 20
+                                                                                    [endLine] => 20
+                                                                                )
+
+                                                                        )
+
+                                                                    [1] => PhpParser\Node\Expr\ClosureUse Object
+                                                                        (
+                                                                            [var] => class_prefix
+                                                                            [byRef] => 
+                                                                            [attributes:protected] => Array
+                                                                                (
+                                                                                    [startLine] => 20
+                                                                                    [endLine] => 20
+                                                                                )
+
+                                                                        )
+
+                                                                )
+
+                                                            [returnType] => 
+                                                            [stmts] => Array
+                                                                (
+                                                                    [0] => PhpParser\Node\Expr\Assign Object
+                                                                        (
+                                                                            [var] => PhpParser\Node\Expr\Variable Object
+                                                                                (
+                                                                                    [name] => len
+                                                                                    [attributes:protected] => Array
+                                                                                        (
+                                                                                            [comments] => Array
+                                                                                                (
+                                                                                                    [0] => PhpParser\Comment Object
+                                                                                                        (
+                                                                                                            [text:protected] => // does the class use the namespace prefix?
+
+                                                                                                            [line:protected] => 22
+                                                                                                        )
+
+                                                                                                )
+
+                                                                                            [startLine] => 23
+                                                                                            [endLine] => 23
+                                                                                        )
+
+                                                                                )
+
+                                                                            [expr] => PhpParser\Node\Expr\FuncCall Object
+                                                                                (
+                                                                                    [name] => PhpParser\Node\Name Object
+                                                                                        (
+                                                                                            [parts] => Array
+                                                                                                (
+                                                                                                    [0] => strlen
+                                                                                                )
+
+                                                                                            [attributes:protected] => Array
+                                                                                                (
+                                                                                                    [startLine] => 23
+                                                                                                    [endLine] => 23
+                                                                                                )
+
+                                                                                        )
+
+                                                                                    [args] => Array
+                                                                                        (
+                                                                                            [0] => PhpParser\Node\Arg Object
+                                                                                                (
+                                                                                                    [value] => PhpParser\Node\Expr\Variable Object
+                                                                                                        (
+                                                                                                            [name] => class_prefix
+                                                                                                            [attributes:protected] => Array
+                                                                                                                (
+                                                                                                                    [startLine] => 23
+                                                                                                                    [endLine] => 23
+                                                                                                                )
+
+                                                                                                        )
+
+                                                                                                    [byRef] => 
+                                                                                                    [unpack] => 
+                                                                                                    [attributes:protected] => Array
+                                                                                                        (
+                                                                                                            [startLine] => 23
+                                                                                                            [endLine] => 23
+                                                                                                        )
+
+                                                                                                )
+
+                                                                                        )
+
+                                                                                    [attributes:protected] => Array
+                                                                                        (
+                                                                                            [startLine] => 23
+                                                                                            [endLine] => 23
+                                                                                        )
+
+                                                                                )
+
+                                                                            [attributes:protected] => Array
+                                                                                (
+                                                                                    [comments] => Array
+                                                                                        (
+                                                                                            [0] => PhpParser\Comment Object
+                                                                                                (
+                                                                                                    [text:protected] => // does the class use the namespace prefix?
+
+                                                                                                    [line:protected] => 22
+                                                                                                )
+
+                                                                                        )
+
+                                                                                    [startLine] => 23
+                                                                                    [endLine] => 23
+                                                                                )
+
+                                                                        )
+
+                                                                    [1] => PhpParser\Node\Stmt\If_ Object
+                                                                        (
+                                                                            [cond] => PhpParser\Node\Expr\BinaryOp\NotIdentical Object
+                                                                                (
+                                                                                    [left] => PhpParser\Node\Expr\FuncCall Object
+                                                                                        (
+                                                                                            [name] => PhpParser\Node\Name Object
+                                                                                                (
+                                                                                                    [parts] => Array
+                                                                                                        (
+                                                                                                            [0] => strncmp
+                                                                                                        )
+
+                                                                                                    [attributes:protected] => Array
+                                                                                                        (
+                                                                                                            [startLine] => 25
+                                                                                                            [endLine] => 25
+                                                                                                        )
+
+                                                                                                )
+
+                                                                                            [args] => Array
+                                                                                                (
+                                                                                                    [0] => PhpParser\Node\Arg Object
+                                                                                                        (
+                                                                                                            [value] => PhpParser\Node\Expr\Variable Object
+                                                                                                                (
+                                                                                                                    [name] => class_prefix
+                                                                                                                    [attributes:protected] => Array
+                                                                                                                        (
+                                                                                                                            [startLine] => 25
+                                                                                                                            [endLine] => 25
+                                                                                                                        )
+
+                                                                                                                )
+
+                                                                                                            [byRef] => 
+                                                                                                            [unpack] => 
+                                                                                                            [attributes:protected] => Array
+                                                                                                                (
+                                                                                                                    [startLine] => 25
+                                                                                                                    [endLine] => 25
+                                                                                                                )
+
+                                                                                                        )
+
+                                                                                                    [1] => PhpParser\Node\Arg Object
+                                                                                                        (
+                                                                                                            [value] => PhpParser\Node\Expr\Variable Object
+                                                                                                                (
+                                                                                                                    [name] => class
+                                                                                                                    [attributes:protected] => Array
+                                                                                                                        (
+                                                                                                                            [startLine] => 25
+                                                                                                                            [endLine] => 25
+                                                                                                                        )
+
+                                                                                                                )
+
+                                                                                                            [byRef] => 
+                                                                                                            [unpack] => 
+                                                                                                            [attributes:protected] => Array
+                                                                                                                (
+                                                                                                                    [startLine] => 25
+                                                                                                                    [endLine] => 25
+                                                                                                                )
+
+                                                                                                        )
+
+                                                                                                    [2] => PhpParser\Node\Arg Object
+                                                                                                        (
+                                                                                                            [value] => PhpParser\Node\Expr\Variable Object
+                                                                                                                (
+                                                                                                                    [name] => len
+                                                                                                                    [attributes:protected] => Array
+                                                                                                                        (
+                                                                                                                            [startLine] => 25
+                                                                                                                            [endLine] => 25
+                                                                                                                        )
+
+                                                                                                                )
+
+                                                                                                            [byRef] => 
+                                                                                                            [unpack] => 
+                                                                                                            [attributes:protected] => Array
+                                                                                                                (
+                                                                                                                    [startLine] => 25
+                                                                                                                    [endLine] => 25
+                                                                                                                )
+
+                                                                                                        )
+
+                                                                                                )
+
+                                                                                            [attributes:protected] => Array
+                                                                                                (
+                                                                                                    [startLine] => 25
+                                                                                                    [endLine] => 25
+                                                                                                )
+
+                                                                                        )
+
+                                                                                    [right] => PhpParser\Node\Scalar\LNumber Object
+                                                                                        (
+                                                                                            [value] => 0
+                                                                                            [attributes:protected] => Array
+                                                                                                (
+                                                                                                    [startLine] => 25
+                                                                                                    [endLine] => 25
+                                                                                                )
+
+                                                                                        )
+
+                                                                                    [attributes:protected] => Array
+                                                                                        (
+                                                                                            [startLine] => 25
+                                                                                            [endLine] => 25
+                                                                                        )
+
+                                                                                )
+
+                                                                            [stmts] => Array
+                                                                                (
+                                                                                    [0] => PhpParser\Node\Stmt\Return_ Object
+                                                                                        (
+                                                                                            [expr] => 
+                                                                                            [attributes:protected] => Array
+                                                                                                (
+                                                                                                    [comments] => Array
+                                                                                                        (
+                                                                                                            [0] => PhpParser\Comment Object
+                                                                                                                (
+                                                                                                                    [text:protected] => // no, move to the next registered autoloader
+
+                                                                                                                    [line:protected] => 26
+                                                                                                                )
+
+                                                                                                        )
+
+                                                                                                    [startLine] => 27
+                                                                                                    [endLine] => 27
+                                                                                                )
+
+                                                                                        )
+
+                                                                                )
+
+                                                                            [elseifs] => Array
+                                                                                (
+                                                                                )
+
+                                                                            [else] => 
+                                                                            [attributes:protected] => Array
+                                                                                (
+                                                                                    [startLine] => 25
+                                                                                    [endLine] => 28
+                                                                                )
+
+                                                                        )
+
+                                                                    [2] => PhpParser\Node\Expr\Assign Object
+                                                                        (
+                                                                            [var] => PhpParser\Node\Expr\Variable Object
+                                                                                (
+                                                                                    [name] => relative_class
+                                                                                    [attributes:protected] => Array
+                                                                                        (
+                                                                                            [comments] => Array
+                                                                                                (
+                                                                                                    [0] => PhpParser\Comment Object
+                                                                                                        (
+                                                                                                            [text:protected] => // get the relative class name
+
+                                                                                                            [line:protected] => 30
+                                                                                                        )
+
+                                                                                                )
+
+                                                                                            [startLine] => 31
+                                                                                            [endLine] => 31
+                                                                                        )
+
+                                                                                )
+
+                                                                            [expr] => PhpParser\Node\Expr\FuncCall Object
+                                                                                (
+                                                                                    [name] => PhpParser\Node\Name Object
+                                                                                        (
+                                                                                            [parts] => Array
+                                                                                                (
+                                                                                                    [0] => substr
+                                                                                                )
+
+                                                                                            [attributes:protected] => Array
+                                                                                                (
+                                                                                                    [startLine] => 31
+                                                                                                    [endLine] => 31
+                                                                                                )
+
+                                                                                        )
+
+                                                                                    [args] => Array
+                                                                                        (
+                                                                                            [0] => PhpParser\Node\Arg Object
+                                                                                                (
+                                                                                                    [value] => PhpParser\Node\Expr\Variable Object
+                                                                                                        (
+                                                                                                            [name] => class
+                                                                                                            [attributes:protected] => Array
+                                                                                                                (
+                                                                                                                    [startLine] => 31
+                                                                                                                    [endLine] => 31
+                                                                                                                )
+
+                                                                                                        )
+
+                                                                                                    [byRef] => 
+                                                                                                    [unpack] => 
+                                                                                                    [attributes:protected] => Array
+                                                                                                        (
+                                                                                                            [startLine] => 31
+                                                                                                            [endLine] => 31
+                                                                                                        )
+
+                                                                                                )
+
+                                                                                            [1] => PhpParser\Node\Arg Object
+                                                                                                (
+                                                                                                    [value] => PhpParser\Node\Expr\Variable Object
+                                                                                                        (
+                                                                                                            [name] => len
+                                                                                                            [attributes:protected] => Array
+                                                                                                                (
+                                                                                                                    [startLine] => 31
+                                                                                                                    [endLine] => 31
+                                                                                                                )
+
+                                                                                                        )
+
+                                                                                                    [byRef] => 
+                                                                                                    [unpack] => 
+                                                                                                    [attributes:protected] => Array
+                                                                                                        (
+                                                                                                            [startLine] => 31
+                                                                                                            [endLine] => 31
+                                                                                                        )
+
+                                                                                                )
+
+                                                                                        )
+
+                                                                                    [attributes:protected] => Array
+                                                                                        (
+                                                                                            [startLine] => 31
+                                                                                            [endLine] => 31
+                                                                                        )
+
+                                                                                )
+
+                                                                            [attributes:protected] => Array
+                                                                                (
+                                                                                    [comments] => Array
+                                                                                        (
+                                                                                            [0] => PhpParser\Comment Object
+                                                                                                (
+                                                                                                    [text:protected] => // get the relative class name
+
+                                                                                                    [line:protected] => 30
+                                                                                                )
+
+                                                                                        )
+
+                                                                                    [startLine] => 31
+                                                                                    [endLine] => 31
+                                                                                )
+
+                                                                        )
+
+                                                                    [3] => PhpParser\Node\Expr\Assign Object
+                                                                        (
+                                                                            [var] => PhpParser\Node\Expr\Variable Object
+                                                                                (
+                                                                                    [name] => file
+                                                                                    [attributes:protected] => Array
+                                                                                        (
+                                                                                            [comments] => Array
+                                                                                                (
+                                                                                                    [0] => PhpParser\Comment Object
+                                                                                                        (
+                                                                                                            [text:protected] => // replace the namespace prefix with the base directory, replace namespace
+
+                                                                                                            [line:protected] => 33
+                                                                                                        )
+
+                                                                                                    [1] => PhpParser\Comment Object
+                                                                                                        (
+                                                                                                            [text:protected] => // separators with directory separators in the relative class name, append
+
+                                                                                                            [line:protected] => 34
+                                                                                                        )
+
+                                                                                                    [2] => PhpParser\Comment Object
+                                                                                                        (
+                                                                                                            [text:protected] => // with .php
+
+                                                                                                            [line:protected] => 35
+                                                                                                        )
+
+                                                                                                )
+
+                                                                                            [startLine] => 36
+                                                                                            [endLine] => 36
+                                                                                        )
+
+                                                                                )
+
+                                                                            [expr] => PhpParser\Node\Expr\BinaryOp\Concat Object
+                                                                                (
+                                                                                    [left] => PhpParser\Node\Expr\BinaryOp\Concat Object
+                                                                                        (
+                                                                                            [left] => PhpParser\Node\Expr\Variable Object
+                                                                                                (
+                                                                                                    [name] => base_dir
+                                                                                                    [attributes:protected] => Array
+                                                                                                        (
+                                                                                                            [startLine] => 36
+                                                                                                            [endLine] => 36
+                                                                                                        )
+
+                                                                                                )
+
+                                                                                            [right] => PhpParser\Node\Expr\FuncCall Object
+                                                                                                (
+                                                                                                    [name] => PhpParser\Node\Name Object
+                                                                                                        (
+                                                                                                            [parts] => Array
+                                                                                                                (
+                                                                                                                    [0] => str_replace
+                                                                                                                )
+
+                                                                                                            [attributes:protected] => Array
+                                                                                                                (
+                                                                                                                    [startLine] => 36
+                                                                                                                    [endLine] => 36
+                                                                                                                )
+
+                                                                                                        )
+
+                                                                                                    [args] => Array
+                                                                                                        (
+                                                                                                            [0] => PhpParser\Node\Arg Object
+                                                                                                                (
+                                                                                                                    [value] => PhpParser\Node\Scalar\String_ Object
+                                                                                                                        (
+                                                                                                                            [value] => \
+                                                                                                                            [attributes:protected] => Array
+                                                                                                                                (
+                                                                                                                                    [startLine] => 36
+                                                                                                                                    [endLine] => 36
+                                                                                                                                )
+
+                                                                                                                        )
+
+                                                                                                                    [byRef] => 
+                                                                                                                    [unpack] => 
+                                                                                                                    [attributes:protected] => Array
+                                                                                                                        (
+                                                                                                                            [startLine] => 36
+                                                                                                                            [endLine] => 36
+                                                                                                                        )
+
+                                                                                                                )
+
+                                                                                                            [1] => PhpParser\Node\Arg Object
+                                                                                                                (
+                                                                                                                    [value] => PhpParser\Node\Scalar\String_ Object
+                                                                                                                        (
+                                                                                                                            [value] => /
+                                                                                                                            [attributes:protected] => Array
+                                                                                                                                (
+                                                                                                                                    [startLine] => 36
+                                                                                                                                    [endLine] => 36
+                                                                                                                                )
+
+                                                                                                                        )
+
+                                                                                                                    [byRef] => 
+                                                                                                                    [unpack] => 
+                                                                                                                    [attributes:protected] => Array
+                                                                                                                        (
+                                                                                                                            [startLine] => 36
+                                                                                                                            [endLine] => 36
+                                                                                                                        )
+
+                                                                                                                )
+
+                                                                                                            [2] => PhpParser\Node\Arg Object
+                                                                                                                (
+                                                                                                                    [value] => PhpParser\Node\Expr\Variable Object
+                                                                                                                        (
+                                                                                                                            [name] => relative_class
+                                                                                                                            [attributes:protected] => Array
+                                                                                                                                (
+                                                                                                                                    [startLine] => 36
+                                                                                                                                    [endLine] => 36
+                                                                                                                                )
+
+                                                                                                                        )
+
+                                                                                                                    [byRef] => 
+                                                                                                                    [unpack] => 
+                                                                                                                    [attributes:protected] => Array
+                                                                                                                        (
+                                                                                                                            [startLine] => 36
+                                                                                                                            [endLine] => 36
+                                                                                                                        )
+
+                                                                                                                )
+
+                                                                                                        )
+
+                                                                                                    [attributes:protected] => Array
+                                                                                                        (
+                                                                                                            [startLine] => 36
+                                                                                                            [endLine] => 36
+                                                                                                        )
+
+                                                                                                )
+
+                                                                                            [attributes:protected] => Array
+                                                                                                (
+                                                                                                    [startLine] => 36
+                                                                                                    [endLine] => 36
+                                                                                                )
+
+                                                                                        )
+
+                                                                                    [right] => PhpParser\Node\Scalar\String_ Object
+                                                                                        (
+                                                                                            [value] => .php
+                                                                                            [attributes:protected] => Array
+                                                                                                (
+                                                                                                    [startLine] => 36
+                                                                                                    [endLine] => 36
+                                                                                                )
+
+                                                                                        )
+
+                                                                                    [attributes:protected] => Array
+                                                                                        (
+                                                                                            [startLine] => 36
+                                                                                            [endLine] => 36
+                                                                                        )
+
+                                                                                )
+
+                                                                            [attributes:protected] => Array
+                                                                                (
+                                                                                    [comments] => Array
+                                                                                        (
+                                                                                            [0] => PhpParser\Comment Object
+                                                                                                (
+                                                                                                    [text:protected] => // replace the namespace prefix with the base directory, replace namespace
+
+                                                                                                    [line:protected] => 33
+                                                                                                )
+
+                                                                                            [1] => PhpParser\Comment Object
+                                                                                                (
+                                                                                                    [text:protected] => // separators with directory separators in the relative class name, append
+
+                                                                                                    [line:protected] => 34
+                                                                                                )
+
+                                                                                            [2] => PhpParser\Comment Object
+                                                                                                (
+                                                                                                    [text:protected] => // with .php
+
+                                                                                                    [line:protected] => 35
+                                                                                                )
+
+                                                                                        )
+
+                                                                                    [startLine] => 36
+                                                                                    [endLine] => 36
+                                                                                )
+
+                                                                        )
+
+                                                                    [4] => PhpParser\Node\Stmt\If_ Object
+                                                                        (
+                                                                            [cond] => PhpParser\Node\Expr\FuncCall Object
+                                                                                (
+                                                                                    [name] => PhpParser\Node\Name Object
+                                                                                        (
+                                                                                            [parts] => Array
+                                                                                                (
+                                                                                                    [0] => file_exists
+                                                                                                )
+
+                                                                                            [attributes:protected] => Array
+                                                                                                (
+                                                                                                    [startLine] => 39
+                                                                                                    [endLine] => 39
+                                                                                                )
+
+                                                                                        )
+
+                                                                                    [args] => Array
+                                                                                        (
+                                                                                            [0] => PhpParser\Node\Arg Object
+                                                                                                (
+                                                                                                    [value] => PhpParser\Node\Expr\Variable Object
+                                                                                                        (
+                                                                                                            [name] => file
+                                                                                                            [attributes:protected] => Array
+                                                                                                                (
+                                                                                                                    [startLine] => 39
+                                                                                                                    [endLine] => 39
+                                                                                                                )
+
+                                                                                                        )
+
+                                                                                                    [byRef] => 
+                                                                                                    [unpack] => 
+                                                                                                    [attributes:protected] => Array
+                                                                                                        (
+                                                                                                            [startLine] => 39
+                                                                                                            [endLine] => 39
+                                                                                                        )
+
+                                                                                                )
+
+                                                                                        )
+
+                                                                                    [attributes:protected] => Array
+                                                                                        (
+                                                                                            [startLine] => 39
+                                                                                            [endLine] => 39
+                                                                                        )
+
+                                                                                )
+
+                                                                            [stmts] => Array
+                                                                                (
+                                                                                    [0] => PhpParser\Node\Expr\Include_ Object
+                                                                                        (
+                                                                                            [expr] => PhpParser\Node\Expr\Variable Object
+                                                                                                (
+                                                                                                    [name] => file
+                                                                                                    [attributes:protected] => Array
+                                                                                                        (
+                                                                                                            [startLine] => 40
+                                                                                                            [endLine] => 40
+                                                                                                        )
+
+                                                                                                )
+
+                                                                                            [type] => 3
+                                                                                            [attributes:protected] => Array
+                                                                                                (
+                                                                                                    [startLine] => 40
+                                                                                                    [endLine] => 40
+                                                                                                )
+
+                                                                                        )
+
+                                                                                )
+
+                                                                            [elseifs] => Array
+                                                                                (
+                                                                                )
+
+                                                                            [else] => 
+                                                                            [attributes:protected] => Array
+                                                                                (
+                                                                                    [comments] => Array
+                                                                                        (
+                                                                                            [0] => PhpParser\Comment Object
+                                                                                                (
+                                                                                                    [text:protected] => // if the file exists, require it
+
+                                                                                                    [line:protected] => 38
+                                                                                                )
+
+                                                                                        )
+
+                                                                                    [startLine] => 39
+                                                                                    [endLine] => 41
+                                                                                )
+
+                                                                        )
+
+                                                                )
+
+                                                            [attributes:protected] => Array
+                                                                (
+                                                                    [startLine] => 20
+                                                                    [endLine] => 42
+                                                                )
+
+                                                        )
+
+                                                    [byRef] => 
+                                                    [unpack] => 
+                                                    [attributes:protected] => Array
+                                                        (
+                                                            [startLine] => 20
+                                                            [endLine] => 42
+                                                        )
+
+                                                )
+
+                                        )
+
+                                    [attributes:protected] => Array
+                                        (
+                                            [startLine] => 20
+                                            [endLine] => 42
+                                        )
+
+                                )
+
+                        )
+
+                    [attributes:protected] => Array
+                        (
+                            [startLine] => 18
+                            [endLine] => 44
+                        )
+
+                )
+
+        )
+
+    [elseifs] => Array
+        (
+        )
+
+    [else] => 
+    [attributes:protected] => Array
+        (
+            [comments] => Array
+                (
+                    [0] => PhpParser\Comment\Doc Object
+                        (
+                            [text:protected] => /**
+ * An example of a project-specific implementation.
+ * 
+ * After registering this autoload function with SPL, the following line
+ * would cause the function to attempt to load the \Foo\Bar\Baz\Qux class
+ * from /path/to/project/src/Baz/Qux.php:
+ * 
+ *      new \Foo\Bar\Baz\Qux;
+ *      
+ * @param string $class The fully-qualified class name.
+ * @return void
+ */
+                            [line:protected] => 3
+                        )
+
+                )
+
+            [startLine] => 16
+            [endLine] => 46
+        )
+
+)
+Expr_FuncCall
+PhpParser\Node\Expr\FuncCall Object
+(
+    [name] => PhpParser\Node\Name Object
+        (
+            [parts] => Array
+                (
+                    [0] => autoload_init
+                )
+
+            [attributes:protected] => Array
+                (
+                    [startLine] => 48
+                    [endLine] => 48
+                )
+
+        )
+
+    [args] => Array
+        (
+            [0] => PhpParser\Node\Arg Object
+                (
+                    [value] => PhpParser\Node\Scalar\String_ Object
+                        (
+                            [value] => browserfs\phpstat\
+                            [attributes:protected] => Array
+                                (
+                                    [startLine] => 48
+                                    [endLine] => 48
+                                )
+
+                        )
+
+                    [byRef] => 
+                    [unpack] => 
+                    [attributes:protected] => Array
+                        (
+                            [startLine] => 48
+                            [endLine] => 48
+                        )
+
+                )
+
+            [1] => PhpParser\Node\Arg Object
+                (
+                    [value] => PhpParser\Node\Expr\BinaryOp\Concat Object
+                        (
+                            [left] => PhpParser\Node\Scalar\MagicConst\Dir Object
+                                (
+                                    [attributes:protected] => Array
+                                        (
+                                            [startLine] => 48
+                                            [endLine] => 48
+                                        )
+
+                                )
+
+                            [right] => PhpParser\Node\Scalar\String_ Object
+                                (
+                                    [value] => /src/
+                                    [attributes:protected] => Array
+                                        (
+                                            [startLine] => 48
+                                            [endLine] => 48
+                                        )
+
+                                )
+
+                            [attributes:protected] => Array
+                                (
+                                    [startLine] => 48
+                                    [endLine] => 48
+                                )
+
+                        )
+
+                    [byRef] => 
+                    [unpack] => 
+                    [attributes:protected] => Array
+                        (
+                            [startLine] => 48
+                            [endLine] => 48
+                        )
+
+                )
+
+        )
+
+    [attributes:protected] => Array
+        (
+            [startLine] => 48
+            [endLine] => 48
+        )
+
+)
+Stmt_If
+PhpParser\Node\Stmt\If_ Object
+(
+    [cond] => PhpParser\Node\Expr\BinaryOp\BooleanAnd Object
+        (
+            [left] => PhpParser\Node\Expr\FuncCall Object
+                (
+                    [name] => PhpParser\Node\Name Object
+                        (
+                            [parts] => Array
+                                (
+                                    [0] => is_dir
+                                )
+
+                            [attributes:protected] => Array
+                                (
+                                    [startLine] => 52
+                                    [endLine] => 52
+                                )
+
+                        )
+
+                    [args] => Array
+                        (
+                            [0] => PhpParser\Node\Arg Object
+                                (
+                                    [value] => PhpParser\Node\Expr\BinaryOp\Concat Object
+                                        (
+                                            [left] => PhpParser\Node\Scalar\MagicConst\Dir Object
+                                                (
+                                                    [attributes:protected] => Array
+                                                        (
+                                                            [startLine] => 52
+                                                            [endLine] => 52
+                                                        )
+
+                                                )
+
+                                            [right] => PhpParser\Node\Scalar\String_ Object
+                                                (
+                                                    [value] => /vendor
+                                                    [attributes:protected] => Array
+                                                        (
+                                                            [startLine] => 52
+                                                            [endLine] => 52
+                                                        )
+
+                                                )
+
+                                            [attributes:protected] => Array
+                                                (
+                                                    [startLine] => 52
+                                                    [endLine] => 52
+                                                )
+
+                                        )
+
+                                    [byRef] => 
+                                    [unpack] => 
+                                    [attributes:protected] => Array
+                                        (
+                                            [startLine] => 52
+                                            [endLine] => 52
+                                        )
+
+                                )
+
+                        )
+
+                    [attributes:protected] => Array
+                        (
+                            [startLine] => 52
+                            [endLine] => 52
+                        )
+
+                )
+
+            [right] => PhpParser\Node\Expr\FuncCall Object
+                (
+                    [name] => PhpParser\Node\Name Object
+                        (
+                            [parts] => Array
+                                (
+                                    [0] => file_exists
+                                )
+
+                            [attributes:protected] => Array
+                                (
+                                    [startLine] => 52
+                                    [endLine] => 52
+                                )
+
+                        )
+
+                    [args] => Array
+                        (
+                            [0] => PhpParser\Node\Arg Object
+                                (
+                                    [value] => PhpParser\Node\Expr\BinaryOp\Concat Object
+                                        (
+                                            [left] => PhpParser\Node\Scalar\MagicConst\Dir Object
+                                                (
+                                                    [attributes:protected] => Array
+                                                        (
+                                                            [startLine] => 52
+                                                            [endLine] => 52
+                                                        )
+
+                                                )
+
+                                            [right] => PhpParser\Node\Scalar\String_ Object
+                                                (
+                                                    [value] => /vendor/autoload.php
+                                                    [attributes:protected] => Array
+                                                        (
+                                                            [startLine] => 52
+                                                            [endLine] => 52
+                                                        )
+
+                                                )
+
+                                            [attributes:protected] => Array
+                                                (
+                                                    [startLine] => 52
+                                                    [endLine] => 52
+                                                )
+
+                                        )
+
+                                    [byRef] => 
+                                    [unpack] => 
+                                    [attributes:protected] => Array
+                                        (
+                                            [startLine] => 52
+                                            [endLine] => 52
+                                        )
+
+                                )
+
+                        )
+
+                    [attributes:protected] => Array
+                        (
+                            [startLine] => 52
+                            [endLine] => 52
+                        )
+
+                )
+
+            [attributes:protected] => Array
+                (
+                    [startLine] => 52
+                    [endLine] => 52
+                )
+
+        )
+
+    [stmts] => Array
+        (
+            [0] => PhpParser\Node\Expr\Include_ Object
+                (
+                    [expr] => PhpParser\Node\Expr\BinaryOp\Concat Object
+                        (
+                            [left] => PhpParser\Node\Scalar\MagicConst\Dir Object
+                                (
+                                    [attributes:protected] => Array
+                                        (
+                                            [startLine] => 53
+                                            [endLine] => 53
+                                        )
+
+                                )
+
+                            [right] => PhpParser\Node\Scalar\String_ Object
+                                (
+                                    [value] => /vendor/autoload.php
+                                    [attributes:protected] => Array
+                                        (
+                                            [startLine] => 53
+                                            [endLine] => 53
+                                        )
+
+                                )
+
+                            [attributes:protected] => Array
+                                (
+                                    [startLine] => 53
+                                    [endLine] => 53
+                                )
+
+                        )
+
+                    [type] => 4
+                    [attributes:protected] => Array
+                        (
+                            [startLine] => 53
+                            [endLine] => 53
+                        )
+
+                )
+
+        )
+
+    [elseifs] => Array
+        (
+        )
+
+    [else] => 
+    [attributes:protected] => Array
+        (
+            [comments] => Array
+                (
+                    [0] => PhpParser\Comment Object
+                        (
+                            [text:protected] => // throw new \Exception( json_encode( scandir( __DIR__  ), JSON_PRETTY_PRINT ) );
+
+                            [line:protected] => 50
+                        )
+
+                )
+
+            [startLine] => 52
+            [endLine] => 54
+        )
+
+)
+
+
+Time: 265 ms, Memory: 11.00Mb
+
+OK (1 test, 1 assertion)
