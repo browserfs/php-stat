@@ -2,33 +2,30 @@
 
 	namespace browserfs\phpstat\Parser;
 
-	class PHPClass {
+	class PHPClass extends PHPInterface {
 
-		protected $name = null;
-		protected $extends = null;
-		protected $implements = null;
+		public function methodToString( $methodDefinition ) {
 
-		protected $properties = [
-			'static'   => [],
-			'instance' => []
-		];
+			$result = parent::methodToString( $methodDefinition );
 
-		public function __construct( $className, $extends, $implements ) {
-			$this->name = $className;
-			$this->extends = $extends;
-			$this->implements = $implements;
+			// on abstact methods we don't compute method body
+			if ( preg_match( '/[\\s]+abstract[\\s+]/', $result ) ) {
+				return $result;
+			}
 
-			echo "CREATE CLASS: ", $className, " EXTENDS ", json_encode( $extends ), ", IMPLEMENTS ", json_encode( $implements ), "\n";
+			$result .= "\n    { /* " . $methodDefinition['body'] . " */ }";
+
+			return $result;
+
 		}
 
-		/**
-		 * @param string  $propertyType = enum( 'method', 'constant', 'property', 'var' );
-		 * @param string  $propertyName
-		 * @param boolean $isStatic
-		 * @param array   $methodArgs    = null
-		 * @param string  $propertyValue = '';
-		 */
-		public function addProperty( $isStatic, $propertyType, $propertyAccess, $propertyName, $propertyValue, $methodArgs = null ) {
+		public function __toString() {
+
+			$result = parent::__toString();
+
+			$result = preg_replace( '/^interface /', 'class ', $result );
+
+			return $result;
 
 		}
 

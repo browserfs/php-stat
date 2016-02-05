@@ -11,9 +11,12 @@
 
 		protected $namespace = null;
 
+		protected $defines   = [];
 		protected $functions = [];
 		protected $classes   = [];
 		protected $interfaces= [];
+		protected $traits    = [];
+
 
 		/**
 		 * Class constructor. Parses a fileName.
@@ -22,15 +25,15 @@
 		public function __construct( $fileName ) {
 
 			if ( !is_string( $fileName ) || !strlen( $fileName ) ) {
-				throw new \browserfs\Exception( 'Invalid argument. Expected a non-empty string!' );
+				throw new \Exception( 'Invalid argument. Expected a non-empty string!' );
 			}
 
 			if ( !file_exists( $fileName ) ) {
-				throw new \browserfs\Exception( 'File ' . $fileName . ' not found!' );
+				throw new \Exception( 'File ' . $fileName . ' not found!' );
 			}
 
 			if ( !is_readable( $fileName ) ) {
-				throw new \browserfs\Exception( 'File ' . $fileName . ' is not readable!' );
+				throw new \Exception( 'File ' . $fileName . ' is not readable!' );
 			}
 
 			$buffer = file_get_contents( $fileName );
@@ -62,6 +65,10 @@
 			
 				default:
 			
+					if ( is_string( $argument ) ) {
+						return $argument;
+					}
+
 					$argType = $argument->getType();
 
 					switch ( $argType ) {
@@ -90,27 +97,73 @@
 
 			} else {
 
-				$argType = $argument->getType();
-
-				switch ( $argType ) {
-
-					case 'Expr_ConstFetch':
-						return implode( '\\', $argument->name->parts );
-						break;
-
-					default:
-						throw new \Exception('Unknown argument default value literal type: ' . $argType );
-						break;
-
-				}
+				return $this->stringifyConstantValue( $argument );
 
 			}
 		}
 
+		protected function dump( $node ) {
+
+			if ( $node === null ) {
+				return 'null';
+			}
+
+	        if ($node instanceof \PhpParser\Node) {
+
+	        	$nodeType =  $node->getType();
+
+	            $r = $nodeType . '(';
+
+	            foreach ($node->getSubNodeNames() as $key) {
+	                $r .= "\n    " . $key . ': ';
+	                $value = $node->$key;
+	                if (null === $value) {
+	                    $r .= 'null';
+	                } elseif (false === $value) {
+	                    $r .= 'false';
+	                } elseif (true === $value) {
+	                    $r .= 'true';
+	                } elseif (is_scalar($value)) {
+	                    $r .= $value;
+	                } else {
+	                    $r .= $this->dump($value);
+	                }
+	            }
+
+	        } elseif (is_array($node)) {
+
+	            $r = '[';
+	            foreach ($node as $key => $value) {
+	                $r .=  $key . ':';
+	                if (null === $value) {
+	                    $r .= 'null';
+	                } elseif (false === $value) {
+	                    $r .= 'false';
+	                } elseif (true === $value) {
+	                    $r .= 'true';
+	                } elseif (is_scalar($value)) {
+	                    $r .= $value;
+	                } else {
+	                    $r .= $this->dump($value);
+	                }
+	            }
+
+	        } else {
+
+	        	throw new \Exception('Expected Node or scalar but got: ' . json_encode( $node ) );
+
+	        }
+
+	        return $r . ")";
+
+
+		}
+
 		protected function serializeStatements( $statements ) {
-			$statements = serialize( $statements );
-			$statements = preg_replace( '/s\\:13\\:"[\\S]{3}attributes";a:2:\\{s\\:9\\:"startLine";i\\:[0-9]+;s:7\\:"endLine";i:[0-9]+;\}/', '', $statements );
-			return md5($statements);
+
+			return md5( $this->dump( $statements ) );
+
+			return $statements != '40cd750bba9870f18aada2478b24840a' ? $statements : 'empty';
 		}
 
 		protected function addFunction( $function ) {
@@ -133,8 +186,6 @@
 			}
 
 			$functionBody = $this->serializeStatements( $function->stmts );
-
-			//throw new \Exception('Add function!');
 
 			$this->functions[] = $added = [
 				'name' => $this->namespace === null ? '\\' . $functionName : '\\' . $this->namespace . '\\' . $functionName,
@@ -170,6 +221,10 @@
 
 						break;
 
+					case 'Expr_Variable':
+						return '$' . $node->name;
+						break;
+
 					default:
 
 						throw new \Exception('Invalid node type: ' . $nodeType );
@@ -181,7 +236,51 @@
 
 		}
 
-		protected function parseInterfaceMember( $member ) {
+		protected function stringifyConstFetch( $constFetch ) {
+
+			$type = $constFetch->name->getType();
+
+			switch ( $type ) {
+
+				case 'Name':
+					return implode( '??', $constFetch->name->parts );
+					break;
+
+				default:
+					throw new \Exception('Unknown const fetch type: ' . $type );
+					break;
+			}
+
+		}
+
+		protected function stringifyConstantValue( $constantValueNode ) {
+
+			if ( $constantValueNode === null ) {
+				return 'null';
+			}
+
+			$nodeType = $constantValueNode->getType();
+
+			switch ( $nodeType ) {
+
+				case 'Scalar_LNumber':
+				case 'Scalar_String':
+					return json_encode( $constantValueNode->value );
+					break;
+				case 'Expr_ConstFetch':
+					return $this->stringifyConstFetch( $constantValueNode );
+					break;
+				case 'Expr_ClassConstFetch':
+					return $this->getSuperInterfaceName( $constantValueNode->class ) . '::' . $constantValueNode->name;
+					break;
+				default:
+					return '<' . $nodeType . ' ' . $this->serializeStatements( isset( $constantValueNode->statements ) ? $constantValueNode->statements : [] ) . ' >';
+					break;
+
+			}
+		}
+
+		protected function parseInterfaceMember( $member, &$targetInterface ) {
 			
 			if ( empty( $member ) ) {
 				throw new \Exception('Invalid argument!');
@@ -210,7 +309,30 @@
 						}
 					}
 
-					return $result;
+					$targetInterface->addMethod( $result );
+
+					break;
+
+				case 'Stmt_ClassConst':
+
+					$result = [
+						'name'  => $member->consts[0]->name,
+						'value' => $this->stringifyConstantValue( $member->consts[0]->value )
+					];
+
+					$targetInterface->addConstant( $result );
+
+					break;
+
+				case 'Stmt_Property':
+
+					$result = [
+						'type' => $member->type,
+						'name' => $member->props[0]->name,
+						'default' => $this->stringifyConstantValue( $member->props[0]->default )
+					];
+
+					$targetInterface->addProperty( $result );
 
 					break;
 
@@ -223,11 +345,52 @@
 
 		}
 
+		protected function parseClassMember( $member, &$targetClass ) {
+			
+			if ( empty( $member ) ) {
+				throw new \Exception('Invalid argument!' );
+			}
+
+			$memberType = $member->getType();
+
+			switch ( $memberType ) {
+
+				case 'Stmt_ClassMethod':
+
+					$result = [
+						'name' => $member->name,
+						'type' => $member->type,
+						'args' => [],
+						'body' => $this->serializeStatements( $member->stmts )
+					];
+
+					if ( isset( $member->params ) && is_array( $member->params ) ) {
+						foreach ( $member->params as $param ) {
+							$result['args'][] = [
+								'name' => $param->name,
+								'type' => $this->getArgumentType( $param ),
+								'default' => $this->getArgumentDefaultValueLiteral( $param->default ),
+								'byref' => $param->byRef
+							];
+						}
+					}
+
+					$targetClass->addMethod( $result );
+
+					break;
+
+				default:
+					$this->parseInterfaceMember( $member, $targetClass );
+					break;
+			}
+
+		}
+
 		protected function addInterface( $interface ) {
 
 			//print_r( $interface );
 
-			$interfaceName = $interface->name;
+			$interfaceName = $this->namespace === null ? '\\' . $interface->name : '\\' . $this->namespace . '\\' . $interface->name;
 
 			$extends = [];
 
@@ -239,33 +402,120 @@
 
 			}
 
-			$members = [];
+			$implements = [];
+
+			$result = new Parser\PHPInterface( $interfaceName, $extends, $implements );
 
 			if ( is_array( $interface->stmts ) ) {
 
 				foreach ( $interface->stmts as $member ) {
 					
-					$members[] = $this->parseInterfaceMember( $member );
+					$this->parseInterfaceMember( $member, $result );
 
 				}
 
 			}
 
-			$this->interfaces[] = $interface = [
-				'name' => $interfaceName,
-				'extends' => $extends,
-				'members' => $members
-			];
-
-			print_r( $interface );
+			$this->interfaces[] = $result;
 
 		}
 
 		protected function addClass( $class ) {
 
+			$className = $this->namespace === null ? '\\' . $class->name : '\\' . $this->namespace . '\\' . $class->name;
+
+			$extends = [];
+
+			if ( is_object( $class->extends ) ) {
+				$extends[] = $this->getSuperInterfaceName( $class->extends );
+			}
+
+			$implements = [];
+
+			if ( is_array( $class->implements ) ) {
+				foreach ( $class->implements as $superClass ) {
+					$implements[] = $this->getSuperInterfaceName( $superClass );
+				}
+			}
+
+			$result = $class->type == 16 
+				? new Parser\PHPAbstractClass( $className, $extends, $implements )
+				: new Parser\PHPClass( $className, $extends, $implements );
+
+			if ( is_array( $class->stmts ) ) {
+
+				foreach ( $class->stmts as $member ) {
+					$this->parseClassMember( $member, $result );
+				}
+
+			}
+
+			$this->classes[] = $result;
+
 		}
 
-		protected function handleStatement( $statement ) {
+		protected function addTrait( $trait ) {
+
+			$traitName = $this->namespace === null ? '\\' . $trait->name : '\\' . $this->namespace . '\\' . $trait->name;
+
+			$extends = [];
+
+			$implements = [];
+
+			$result = new Parser\PHPTrait( $traitName, $extends, $implements );
+
+			if ( is_array( $trait->stmts ) ) {
+
+				foreach ( $trait->stmts as $member ) {
+					$this->parseClassMember( $member, $result );
+				}
+
+			}
+
+			$this->traits[] = $result;
+
+		}
+
+		protected function discoverStatement( $statement ) {
+
+			if ( !empty( $statement ) ) {
+
+				if ( isset( $statement->stmts ) && is_array( $statement->stmts ) )  {
+
+					foreach ( $statement->stmts as $substatement ) {
+						$this->handleStatement( $substatement );
+					}
+
+				}
+
+			}
+
+		}
+
+		protected function addFunctionCall( $statement ) {
+			// we're interested if the function call is a "define"
+
+			$funcName = $this->getSuperInterfaceName( $statement->name );
+
+			if ( $funcName !== '\\define' ) {
+				return;
+			}
+			
+			$constVarType = $statement->args[0]->value->getType();
+
+			if ( $constVarType != 'Scalar_String' ) {
+				return;
+			}
+
+			$constValue = $this->stringifyConstantValue( $statement->args[1]->value );
+
+			$this->defines[] = [
+				'name' => $statement->args[0]->value->value,
+				'value' => $constValue
+			];
+		}
+
+		protected function handleStatement( $statement, $inRoot = false ) {
 			
 			$stmtName = $statement->getType();
 
@@ -275,10 +525,6 @@
 
 					$this->handleNamespace( $statement );
 
-					break;
-
-				case 'Expr_FuncCall':
-				case 'Expr_Assign':
 					break;
 
 				case 'Stmt_Function':
@@ -299,8 +545,23 @@
 
 					break;
 
+				case 'Stmt_Trait':
+
+					$this->addTrait( $statement );
+
+					break;
+
+				case 'Expr_FuncCall':
+					$this->addFunctionCall( $statement );
+
+					// intentionally unbreaked
+
 				default:
-					throw new \Exception('Unknown statement type: "' . $stmtName . '"' );
+
+					//throw new \Exception('Unknown statement type: "' . $stmtName . '"' );
+
+					$this->discoverStatement( $statement );
+
 					break;
 
 			}
@@ -322,7 +583,7 @@
 
 			} catch ( Error $e ) {
 
-				throw new \browserfs\Exception('Failed to parse file: ' . $this->fileName . ': ' . $e->getMessage(), 1, $e );
+				throw new \Exception('Failed to parse file: ' . $this->fileName . ': ' . $e->getMessage(), 1, $e );
 
 			}
 
@@ -342,10 +603,10 @@
 			}
 
 			$out .= count( $args ) > 0
-				? "\n    " . implode( ",\n    ", $args ) . "\n"
+				? implode( ", ", $args )
 				: "";
 
-			$out .= ') => { <' . $functionRec[ 'body' ] . '> }';
+			$out .= ")\n{ /* " . $functionRec[ 'body' ] . " */ }";
 
 			return $out;
 
@@ -369,17 +630,36 @@
 
 		public function __toString() {
 
+			return implode( "\n\n", $this->toArray() );
+
+		}
+
+		public function toArray() {
+
 			$out = [];
 
-			foreach ( $this->interfaces as $interface ) {
-				$out[] = $this->serializeInterfaceSignature( $interface );
+			foreach ( $this->defines as $define ) {
+				$out[] = 'define ' . $define['name'] . '  = ' . $define['value'] . ';';
 			}
 
 			foreach ( $this->functions as $function ) {
 				$out[] = $this->serializeFunctionSignature( $function );
 			}
 
-			return implode( "\n\n", $out );
+			foreach ( $this->interfaces as $interface ) {
+				$out[] = $interface->__toString();
+			}
+
+			foreach ( $this->traits as $trait ) {
+				$out[] = $trait->__toString();
+			}
+
+			foreach ( $this->classes as $class ) {
+				$out[] = $class->__toString();
+			}
+
+
+			return $out;
 
 		}
 

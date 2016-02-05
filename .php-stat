@@ -1,0 +1,5 @@
+#ignore vendor, tests dir
+vendor
+tests
+php-stat.php
+bootstrap.php

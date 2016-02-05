@@ -1,0 +1,1 @@
+@php "C:\bin\php-stat\php-stat.php" %*
